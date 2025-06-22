@@ -18,6 +18,10 @@ Usage:
 -- Create Dimension: gold.dim_customers
 -- =============================================================================
 
+IF OBJECT_ID('gold.dim_customers', 'V') IS NOT NULL
+    DROP VIEW gold.dim_customers;
+GO
+
 CREATE VIEW gold.dim_customers as
 SELECT
     ROW_NUMBER() OVER (ORDER BY cst_id) AS customer_key, -- Surrogate key
